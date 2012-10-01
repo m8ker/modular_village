@@ -1,4 +1,6 @@
 ModularVillage::Application.routes.draw do
+  resources :feedbacks
+
   get "pages/home"
   get "pages/contact"
   get "pages/about"
