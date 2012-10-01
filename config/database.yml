@@ -43,7 +43,7 @@ test:
   encoding: unicode
   database: modular_village_test
   pool: 5
-      username: rails
+  username: rails
   password:
 
 
