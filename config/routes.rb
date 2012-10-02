@@ -3,7 +3,8 @@ ModularVillage::Application.routes.draw do
   resources :posts
   resources :pages
   resources :links
-  
+  resources :comments
+   
   devise_for :users
 
   resources :feedbacks

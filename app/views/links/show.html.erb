@@ -1,13 +1,13 @@
-<%- model_class = Link -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+<h2>Comments:</h2>
+<div>
+  <% @link.comments.each do |comment| %>
+    <p><%= comment.message %></p>
+  <% end %>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @link.title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:url) %>:</strong></dt>
-  <dd><%= @link.url %></dd>
-</dl>
-
-
+<%= simple_form_for(@comment) do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :message, :placeholder => 'Add a comment' %>
+  <%= f.button :submit %>
+  <%= f.hidden_field :link_id, :value => @link.id %>
+<% end %>
