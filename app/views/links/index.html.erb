@@ -1,10 +1,7 @@
 <h2>Zero-Carbon Footprint Farm</h2>
 <h3>Specifications<h4>
-<p>Room and board for all workers</p>
-<p>Farm will produce 100% organic vegetables</p>
-<p>Farm will produce solar power to power farm operations and feed energy into the grid</p>
-<%= link_to "Add a link", new_link_path %>
-<%= paginate @links%>
+
+
   <% @links.each do |link| %>
     <div class="row">
     	<div class="span1">
@@ -61,4 +58,5 @@
   	</div>
   	<br>
   <% end %>
+  <%= link_to "Add a link", new_link_path %>
 <%= paginate @links%>
