@@ -17,6 +17,7 @@
         <td><%= link_to link.title, link.url %></td>
         <td><%= link_to link.url, link.url %></td>
         <td><%= link_to "comments", link %></td>
+        <td><%= link_to "+", votes_path(:vote => {:link_id => link.id, :up => true}), :method => :post %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_link_path(link), :class => 'btn btn-mini' %>

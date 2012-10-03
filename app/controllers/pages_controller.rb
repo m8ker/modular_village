@@ -1,14 +1,7 @@
-class PagesController < ApplicationController
+class VotesController < ApplicationController
   
-  def index
-    @title = "Home"
-  end
-  
-  def contact
+  def create
     @title = "Contact"
   end
   
-  def about
-    @title = "About"
-  end
 end
