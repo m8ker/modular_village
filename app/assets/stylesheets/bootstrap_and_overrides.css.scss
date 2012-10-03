@@ -1,0 +1,56 @@
+// Set the correct sprite paths
+$iconSpritePath: image-path('glyphicons-halflings.png');
+$iconWhiteSpritePath: image-path('glyphicons-halflings-white.png');
+
+$navbarBackground: #F1F1F1;
+$navbarBackgroundHighlight: white;
+$navbarText: #eee;
+$navbarLinkColor: #eee;
+
+@import "bootstrap";
+
+@import "bootstrap-responsive";
+
+.navbar .nav > li > a {
+float: none;
+padding: 10px 15px 10px;
+color: #555;
+text-decoration: none;
+text-shadow: 0 1px 0 white;
+}
+
+.navbar .nav { padding-top: 12px;}
+.alert { margin-top: 10px}
+
+.container, .navbar-fixed-bottom .container {
+	max-width: 800px;
+}
+	
+.navbar .brand {
+	padding: 5px 20px 8px;
+	margin-top: 4px;
+}
+
+.navbar-fixed-top .navbar-inner, .navbar-static-top .navbar-inner{
+	min-height: 54px;
+}
+.nav_float_right {
+	float: right;
+}
+.brand img{
+	margin-left: 10px;
+	width:250px;
+}
+
+.pagination a, .pagination span {
+float: left;
+padding: 0 14px;
+line-height: 38px;
+text-decoration: none;
+background-color: white;
+border: 1px solid #DDD;
+}
+
+input, textarea {
+width: 500px;
+}

@@ -1,0 +1,114 @@
+
+@import "font-awesome";
+
+body {
+  padding-top: 60px;
+}
+
+.pull-center {
+	display: block;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+
+/*** STARRING Styles ***/
+
+a.not-starred:hover {
+	color: red;
+}
+
+a:hover > i.not-starred {
+	color: orange;
+	text-decoration: none;
+}
+
+a:hover > i.starred {
+	color: #AFAFAF;
+	text-decoration: none;
+}
+
+i.starred {
+	color: orange 
+}
+
+i.not-starred {
+	color: #AFAFAF
+}
+
+
+/*** VOTING Styles ***/
+
+.vote_count {
+	margin: 0;
+	padding: 0;
+}
+
+.voted_up {
+	a > i.vote_up, .vote_count {
+		color: green;
+		text-decoration: none;
+	}
+	a > i.vote_down {
+		color: grey;
+	}
+	a:hover > i.vote_down {
+		color: red;
+	}		
+}
+
+.voted_nil {
+	a, .vote_count {
+		color: grey;
+		text-decoration: none;
+	}
+}
+
+.voted_down {
+	a {
+		text-decoration: none;
+	}
+	a > i.vote_up {
+		color: grey;
+	}
+	a > i.vote_down, .vote_count {
+		color: red;
+	}
+}
+
+/*** OTHERStyles ***/
+
+#trailer {
+	margin-top: 15px;
+}
+
+.greybox {
+	text-align: center; 
+	margin-top: 30px;
+	padding: 70px 0px 70px 0px;
+	background-color: #f3f2f2;
+	-webkit-border-radius: 20px;
+	border-radius: 20px;
+	-webkit-box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, .25);
+  box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, .25);
+}
+
+.center-box {
+	text-align: center;
+}
+
+.subhead1 {
+	font-size: 2em;
+	color: #999999;
+	line-height: 1.4em;
+	margin-bottom: 5px;
+}
+
+.subhead2 {
+	font-size: 1.4em;
+	color: #999999;
+	line-height: 1.4em;
+	margin-bottom: 3px;
+}

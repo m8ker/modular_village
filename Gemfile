@@ -13,11 +13,13 @@ gem 'pg'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'twitter-bootstrap-rails', "~> 2.0rc0"
+  gem 'bootstrap-sass'
+  
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'font-awesome-sass-rails'
 end
 
 group :development do
@@ -32,7 +34,10 @@ end
 gem 'jquery-rails'
 gem 'simple_form'
 gem 'devise'
-gem 'will_paginate', '> 3.0'
+gem 'rails_admin'
+gem 'kaminari'
+gem 'cancan'
+gem 'acts_as_commentable_with_threading'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

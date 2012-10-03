@@ -1,10 +1,13 @@
 ModularVillage::Application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   resources :posts
   resources :pages
   resources :links
   resources :comments
   resources :votes
+  resources :stars
    
   devise_for :users
 

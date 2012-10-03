@@ -2,9 +2,10 @@ class LinksController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
   # GET /links
   # GET /links.json
+  
   def index
 
-   @links = Link.order("title").page(params[:page]).per_page(3)
+   @links = Link.order("title").page(params[:page]).per(3)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,7 +17,9 @@ class LinksController < ApplicationController
   # GET /links/1.json
   def show
     @link = Link.find(params[:id])
+    @user_who_commented = @current_user
     @comment = Comment.new
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @link }
@@ -43,7 +46,14 @@ class LinksController < ApplicationController
   # link /links.json
   def create
     @link = Link.new(params[:link])
-
+    
+    if @link.save
+    			flash[:notice] = "Link created."
+    			redirect_to :action => "show", :id => @link.id
+    		else
+    			render('new')
+    		end
+    		
     respond_to do |format|
       if @link.save
         format.html { redirect_to @link, notice: 'link was successfully created.' }
