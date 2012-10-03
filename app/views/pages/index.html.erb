@@ -12,13 +12,13 @@
     <p>Every community designed on Modular Village is open and freely accessible. Help design a self-sustaining community and watch as people from around the world re-build your modular village.</p>
     <br />
   </div>
-  <div class="center-box span2"><button class="btn btn-warning btn-large">Sign Up</button><br /><br />Learn More>></div>
+  <div class="center-box span2"><p>Sign up now and receive updates on our progress!</p><button class="btn btn-warning btn-large"><%=link_to "Sign Up", new_user_registration_path %></button><br /><br /><%=link_to "Learn More >>", about_path %></div>
 </div>  
   <hr>
 <div class="span2"><%= image_tag("open-source.png", :alt => "open source") %>
 </div>
 <div class="span6"><h2>Modular Village is not Complete</h2>
-    <p>We need your help making this open-source project a reality. Marketers, subject-matter experts (such as scientists, architects, engineers, and civil servants), startup mentors, designers, developers, and anyone who is passionate about the project, <%=link_to "sign up here", "#"%> to help develop this exciting open-source application. </p>
+    <p>We need your help making this open-source project a reality. Marketers, subject-matter experts (such as scientists, architects, engineers, and civil servants), startup mentors, designers, developers, and anyone who is passionate about the project, <%=link_to "sign up here",  new_user_registration_path %> to help develop this exciting open-source application. </p>
     <p>Developers, check out our <%=link_to "github repository.", "https://github.com/m8ker/modular_village"%></p>
 </div>
 
