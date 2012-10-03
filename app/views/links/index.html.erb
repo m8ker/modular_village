@@ -8,7 +8,9 @@
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:url) %></th>
       <th><%= model_class.human_attribute_name(:comments) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th>vote up</th>
+      <th>vote down</th>
+      <th><%= model_class.human_attribute_name(:votes) %></th>      
     </tr>
   </thead>
   <tbody>
@@ -18,15 +20,8 @@
         <td><%= link_to link.url, link.url %></td>
         <td><%= link_to "comments", link %></td>
         <td><%= link_to "+", votes_path(:vote => {:link_id => link.id, :up => true}), :method => :post %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_link_path(link), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      link_path(link),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
+        <td> <%= link_to "-", votes_path(:vote => {:link_id => link.id, :up => false}), :method => :post %></td>
+        <td>Votes: <%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %></td>
       </tr>
     <% end %>
   </tbody>

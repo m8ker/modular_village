@@ -1,7 +1,15 @@
-class VotesController < ApplicationController
+class PagesController < ApplicationController
   
-  def create
+  def index
+    @title = "Home"
+  end
+  
+  def contact
     @title = "Contact"
+  end
+  
+  def about
+    @title = "About"
   end
   
 end
