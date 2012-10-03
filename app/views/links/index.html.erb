@@ -7,23 +7,29 @@
     <tr>
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:url) %></th>
-      <th><%= model_class.human_attribute_name(:comments) %></th>
-      <th>vote up</th>
-      <th>vote down</th>
-      <th><%= model_class.human_attribute_name(:votes) %></th>      
+      <th><%= model_class.human_attribute_name(:votes) %></th>  
+      <th><%= model_class.human_attribute_name(:comments) %></th>    
     </tr>
   </thead>
-  <tbody>
+  <tbody>  
     <% @links.each do |link| %>
-      <tr>
+    	<tr>
         <td><%= link_to link.title, link.url %></td>
         <td><%= link_to link.url, link.url %></td>
-        <td><%= link_to "comments", link %></td>
-        <td><%= link_to "+", votes_path(:vote => {:link_id => link.id, :up => true}), :method => :post %></td>
-        <td> <%= link_to "-", votes_path(:vote => {:link_id => link.id, :up => false}), :method => :post %></td>
-        <td>Votes: <%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %></td>
-      </tr>
-    <% end %>
+    		<td>Votes: [ <%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %> ]
+
+    		<% if current_user.votes.where(:link_id => link.id, :up => true).present? %>
+    			<%= '[ * ]' %>
+    		<% else %>
+    			<%= link_to '[ + ]', votes_path(:vote => { :link_id => link.id, :up => true }), :method => :post %>
+    		<% end %>
+
+    		<%= link_to '[ - ]', votes_path(:vote => { :link_id => link.id, :up => false}), :method => :post %></td>
+    	<td><%= link_to 'comments', link_path(link) %></td>
+    	<% end %>
+    
+    
+    
   </tbody>
 </table>
 <% if @links.previous_page %>
