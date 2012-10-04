@@ -1,0 +1,75 @@
+<h1><%= @project.title %></h1>
+
+<p><%= @project.description %></p>
+
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
+<br/><br/>
+<h3>Specs</h3>
+<% @project.links.each do |link| %>
+  <div class="row">
+  	<div class="span1 pull-center">
+
+			<% if current_user.present? %>
+  		
+  			<% if current_user.votes.where(:link_id => link.id, :up => true).present? %>
+  				<div class="voted_up">
+  				<%= link_to content_tag(:i, '', :class => "vote_up icon-chevron-up icon-large pull-center"), votes_path(:vote => {:link_id => link.id, :up => true}), :method => :post %>
+  				<%= content_tag(:h4, link.votes.where(:up => true).count - link.votes.where(:up => false).count, :class => "vote_count vote_count_up") %>
+  				<%= link_to content_tag(:i, '', :class => "vote_down icon-chevron-down icon-large pull-center"), votes_path(:vote => {:link_id => link.id, :up => false}), :method => :post %>
+  				</div>
+		  	<% elsif current_user.votes.where(:link_id => link.id, :up => false).present? %>
+					<div class="voted_down">
+  				<%= link_to content_tag(:i, '', :class => "vote_up icon-chevron-up icon-large pull-center"), votes_path(:vote => {:link_id => link.id, :up => true}), :method => :post %>
+  				<%= content_tag(:h4, link.votes.where(:up => true).count - link.votes.where(:up => false).count, :class => "vote_count vote_count_down") %>
+  				<%= link_to content_tag(:i, '', :class => "vote_down icon-chevron-down icon-large pull-center"), votes_path(:vote => {:link_id => link.id, :up => false}), :method => :post %>
+  				</div>
+  			<% else %>
+  				<div class="voted_nil">
+  				<%= link_to content_tag(:i, '', :class => "vote_up icon-chevron-up icon-large pull-center"), votes_path(:vote => {:link_id => link.id, :up => true}), :method => :post %>
+  				<%= content_tag(:h4, link.votes.where(:up => true).count - link.votes.where(:up => false).count, :class => "vote_count") %>
+  				<%= link_to content_tag(:i, '', :class => "vote_down icon-chevron-down icon-large pull-center"), votes_path(:vote => {:link_id => link.id, :up => false}), :method => :post %>
+  				</div>
+  			<% end %>
+			<% else %>
+				<div class="voted_nil">
+				<%= link_to content_tag(:i, '', :class => "vote_up icon-chevron-up icon-large pull-center"), votes_path(:vote => {:link_id => link.id, :up => true}), :method => :post %>
+				<%= content_tag(:h4, link.votes.where(:up => false).count - link.votes.where(:up => false).count, :class => "vote_count") %>				  
+				<%= link_to content_tag(:i, '', :class => "vote_down icon-chevron-down icon-large pull-center"), votes_path(:vote => {:link_id => link.id, :up => false}), :method => :post %>   
+				</div>
+			<% end %>
+  	</div>
+ 		<div class="span7 link_col">
+			<%= link_to(link.title, link.url, target: '_blank') %>&nbsp;&nbsp;<small style="color: grey;"><em><%= link.url.split('/')[2] %></em></small><br>
+			<small>
+				<% if current_user.present? %>
+  			<% if current_user.stars.where(:link_id => link.id).present? %>
+  				<%= link_to content_tag(:i, '', :class => "icon-star icon-large starred"), stars_path(:star => {:link_id => link.id, :starred => true}), :method => :post, :class=> "starred" %>
+  			<% else %>
+  				<%= link_to content_tag(:i, '', :class => "icon-star icon-large not-starred"), stars_path(:star => {:link_id => link.id, :starred => true}), :method => :post, :class => "not-starred" %>
+  			<% end %>
+			<% else %>
+  				<%= link_to content_tag(:i, '', :class => "icon-star icon-large"), stars_path(:star => {:link_id => link.id, :starred => true}), :method => :post %>
+			<% end %>
+  			<%= link_to "comments (#{link.comments.count})", link %>
+		    <%= link_to "+", votes_path(:vote => {:link_id => link.id, :up => true}), :method => :post %>
+		    <%= link_to "-", votes_path(:vote => {:link_id => link.id, :up => false}), :method => :post %>
+	    Up Votes: <%= link.votes.where(:up => true).count %>
+			Down Votes: <%= link.votes.where(:up => false).count %>
+			Votes: <%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %></small>
+ 		</div>
+  
+	</div>
+	<br>
+<% end %>
+<h2>Add a Specification</h2>
+
+<%= simple_form_for(@link) do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :title, :placeholder => 'Add a spec' %>
+  <%= f.input :url, :placeholder => "http://..." %>
+  <%= f.button :submit %>
+  <%= f.hidden_field :project_id, :value => @project.id %>
+<% end %>
+

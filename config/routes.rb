@@ -1,5 +1,7 @@
 ModularVillage::Application.routes.draw do
 
+  get "projects/index"
+
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   resources :posts
@@ -8,6 +10,7 @@ ModularVillage::Application.routes.draw do
   resources :comments
   resources :votes
   resources :stars
+  resources :projects
    
   devise_for :users
 
