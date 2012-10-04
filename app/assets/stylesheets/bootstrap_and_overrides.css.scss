@@ -11,16 +11,18 @@ $navbarLinkColor: #eee;
 
 @import "bootstrap-responsive";
 
-
+.navbar-inner {
+	min-height: 45px;
+}
 .navbar .nav > li > a {
 float: none;
-padding: 10px 15px 10px;
+padding: 10px 15px 5px;
 color: #555;
 text-decoration: none;
 text-shadow: 0 1px 0 white;
 }
 
-.navbar .nav { padding-top: 4px;}
+.navbar .nav { padding-top: 8px;}
 .alert { margin-top: 10px}
 
 .container, .navbar-fixed-bottom .container {
@@ -28,7 +30,7 @@ text-shadow: 0 1px 0 white;
 }
 	
 .navbar .brand {
-	padding: 2px 20px 10px;
+	padding: 4px 20px 10px;
 	margin-top: 4px;
 }
 
@@ -40,7 +42,7 @@ text-shadow: 0 1px 0 white;
 }
 .brand img{
 	margin-left: 10px;
-	width:200px;
+	width:220px;
 }
 
 .pagination a, .pagination span {
