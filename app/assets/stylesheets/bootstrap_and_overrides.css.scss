@@ -22,6 +22,10 @@ text-decoration: none;
 text-shadow: 0 1px 0 white;
 }
 
+.navbar .nav > li > a:hover {
+    color: black;
+}
+
 .navbar .nav { padding-top: 8px;}
 .alert { margin-top: 10px}
 
