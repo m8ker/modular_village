@@ -42,7 +42,11 @@
 			<% end %>
   	</div>
  		<div class="span7 link_col">
-			<%= link_to(link.title, link.url, target: '_blank') %>&nbsp;&nbsp;<small style="color: grey;"><em><%= link.url.split('/')[2] %></em></small><br>
+			<%= link_to(link.title, link.url, target: '_blank') %>&nbsp;&nbsp;<small style="color: grey;"><em>
+			  
+			<%=link.url.split('/')[2] %></em></small>
+			<% if link.tags.present? %>
+			<span>Tags: <%= raw link.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %><% end %></span><br>
 			<small>
 				<% if current_user.present? %>
   			<% if current_user.stars.where(:link_id => link.id).present? %>
@@ -53,6 +57,7 @@
 			<% else %>
   				<%= link_to content_tag(:i, '', :class => "icon-star icon-large"), stars_path(:star => {:link_id => link.id, :starred => true}), :method => :post %>
 			<% end %>
+			
   			<%= link_to "comments (#{link.comments.count})", link %>
 		    <%= link_to "+", votes_path(:vote => {:link_id => link.id, :up => true}), :method => :post %>
 		    <%= link_to "-", votes_path(:vote => {:link_id => link.id, :up => false}), :method => :post %>
@@ -70,6 +75,7 @@
   <%= f.error_notification %>
   <%= f.input :title, :placeholder => 'Add a spec' %>
   <%= f.input :url, :placeholder => "http://..." %>
+  <%= f.input :tag_list, :placeholder => "add a category" %>
 
   <%= f.button :submit %>
   <%= f.hidden_field :project_id, :value => @project.id %>

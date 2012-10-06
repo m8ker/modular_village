@@ -19,7 +19,8 @@ ModularVillage::Application.routes.draw do
   match '/contact', :to => 'pages#contact'
   match '/about', :to => 'pages#about'
   match '/help', :to => 'pages#help'
-  match '/terms', :to => 'pages#terms'  
+  match '/terms', :to => 'pages#terms'
+  get 'tags/:tag', to: 'links#index', as: :tag  
   root :to => 'pages#index'
 
   # The priority is based upon order of creation:

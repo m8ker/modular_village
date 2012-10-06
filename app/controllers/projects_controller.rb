@@ -16,6 +16,11 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    if params[:tag]
+        @links = Link.tagged_with(params[:tag])
+      else
+        @Links = Link.all
+      end
     @project = Project.find(params[:id])
     @user_who_linked = @current_user
     @link = Link.new

@@ -16,6 +16,7 @@ class LinksController < ApplicationController
   # GET /links/1
   # GET /links/1.json
   def show
+    
     @link = Link.find(params[:id])
     @user_who_commented = @current_user
     @comment = Comment.new
