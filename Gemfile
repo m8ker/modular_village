@@ -37,7 +37,6 @@ gem 'devise'
 gem 'rails_admin'
 gem 'kaminari'
 gem 'cancan'
-gem 'acts_as_commentable_with_threading'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

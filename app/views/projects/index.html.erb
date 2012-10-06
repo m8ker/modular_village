@@ -4,7 +4,7 @@
 </div>
     <% @projects.each do |project| %>
         <h2><%= link_to project.title, project_path(project) %></h2>
-        <p><%= project.description %></p>
+        <p><%= project.description.html_safe %></p>
     <% end %>
 
 <br />

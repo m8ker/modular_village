@@ -1,12 +1,13 @@
 <h1><%= @project.title %></h1>
 
-<p><%= @project.description %></p>
+<p><%= @project.description.html_safe %></p>
 
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
 <br/><br/>
-<h3>Specs</h3>
+<h3>Links</h3>
+<p>Please add links to <%=link_to "github repository", "https://github.com/m8ker/modular_village"%> forks and other ideas about how to improve source code.</p><span class="label label-info">You don't need to be a rails developer to help. Non-code-related links and comments are also welcome.</span><br /><br />
 <% @project.links.each do |link| %>
   <div class="row">
   	<div class="span1 pull-center">
@@ -63,12 +64,13 @@
 	</div>
 	<br>
 <% end %>
-<h4>Add a Specification</h4>
+<h4>Add a Link to move this project forward</h4>
 
 <%= simple_form_for(@link) do |f| %>
   <%= f.error_notification %>
   <%= f.input :title, :placeholder => 'Add a spec' %>
   <%= f.input :url, :placeholder => "http://..." %>
+
   <%= f.button :submit %>
   <%= f.hidden_field :project_id, :value => @project.id %>
 <% end %>

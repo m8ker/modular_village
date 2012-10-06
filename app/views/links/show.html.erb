@@ -2,7 +2,7 @@
 <h2>Comments:</h2>
 <div>
   <% @link.comments.each do |comment| %>
-    <p>-<%= comment.message %></p>
+    <p>- <%= comment.message.html_safe %></p>
   <% end %>
 </div>
 
