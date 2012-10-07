@@ -7,9 +7,13 @@
 <%= link_to 'Back', projects_path %>
 <br/><br/>
 <h3>Links</h3>
-<p>Please add links to <%=link_to "github repository", "https://github.com/m8ker/modular_village"%> forks and other ideas about how to improve source code.</p><span class="label label-info">You don't need to be a rails developer to help. Non-code-related links and comments are also welcome.</span><br /><br />
+<p>Please add links to <%=link_to "github repository", "https://github.com/m8ker/modular_village"%> forks and other ideas about how to improve source code.</p><p>You don't need to be a rails developer to help. Non-code-related links and comments are also welcome.<br /><br />
 <% @project.links.each do |link| %>
-  <div class="row">
+  
+    <% if link.categories.present? %>
+      <h1><%= link.categories.map(&:name).map { |t| t }.join(', ') %></h1>
+   <% end %>
+   <div class="row">
   	<div class="span1 pull-center">
 
 			<% if current_user.present? %>
@@ -45,8 +49,7 @@
 			<%= link_to(link.title, link.url, target: '_blank') %>&nbsp;&nbsp;<small style="color: grey;"><em>
 			  
 			<%=link.url.split('/')[2] %></em></small>
-			<% if link.tags.present? %>
-			<span>Tags: <%= raw link.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %><% end %></span><br>
+			<br>
 			<small>
 				<% if current_user.present? %>
   			<% if current_user.stars.where(:link_id => link.id).present? %>
@@ -61,21 +64,30 @@
   			<%= link_to "comments (#{link.comments.count})", link %>
 		    <%= link_to "+", votes_path(:vote => {:link_id => link.id, :up => true}), :method => :post %>
 		    <%= link_to "-", votes_path(:vote => {:link_id => link.id, :up => false}), :method => :post %>
-	    Up Votes: <%= link.votes.where(:up => true).count %>
-			Down Votes: <%= link.votes.where(:up => false).count %>
-			Votes: <%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %></small>
+	    | Up Votes: <%= link.votes.where(:up => true).count %>
+			| Down Votes: <%= link.votes.where(:up => false).count %>
+			| Votes: <%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %></small>
+			<small><% if link.tags.present? %>
+			<span> | Tags <%= raw link.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %><% end %></span></small>
  		</div>
   
 	</div>
 	<br>
 <% end %>
-<h4>Add a Link to move this project forward</h4>
+<h4>Add a helpful link to move this project forward</h4>
 
 <%= simple_form_for(@link) do |f| %>
   <%= f.error_notification %>
   <%= f.input :title, :placeholder => 'Add a spec' %>
   <%= f.input :url, :placeholder => "http://..." %>
-  <%= f.input :tag_list, :placeholder => "add a category" %>
+  <%= f.input :tag_list, :placeholder => "add tags" %>
+  <%= hidden_field_tag "link[category_ids][]", nil %>
+  <h4>In what category should this link be posted?</h4>
+  <% Category.all.each do |category| %>
+    <%= check_box_tag "link[category_ids][]", category.id, @link.category_ids.include?(category.id), id: dom_id(category) %>
+    <%= label_tag dom_id(category), category.name %>
+  <% end %>
+  
 
   <%= f.button :submit %>
   <%= f.hidden_field :project_id, :value => @project.id %>

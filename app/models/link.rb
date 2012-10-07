@@ -1,6 +1,6 @@
 class Link < ActiveRecord::Base
    
-   attr_accessible :title, :url, :project_id, :tag_list
+   attr_accessible :title, :url, :project_id, :tag_list, :category_ids
    
    
    belongs_to :user
@@ -10,6 +10,8 @@ class Link < ActiveRecord::Base
    has_many :stars
    has_many :taggings
    has_many :tags, through: :taggings
+   has_many :categorizations
+   has_many :categories, through: :categorizations
    
    validates :title, :presence => true
    validates :url, :presence => true
@@ -34,3 +36,4 @@ class Link < ActiveRecord::Base
      end
    end
 end
+

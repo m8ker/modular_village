@@ -18,9 +18,9 @@ class ProjectsController < ApplicationController
   def show
     if params[:tag]
         @links = Link.tagged_with(params[:tag])
-      else
+      else 
         @Links = Link.all
-      end
+    end
     @project = Project.find(params[:id])
     @user_who_linked = @current_user
     @link = Link.new

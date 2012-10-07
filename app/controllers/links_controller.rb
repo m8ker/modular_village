@@ -16,7 +16,11 @@ class LinksController < ApplicationController
   # GET /links/1
   # GET /links/1.json
   def show
-    
+    #if params[:tag]
+        #@links = Link.tagged_with(params[:tag])
+      #else 
+        #@Links = Link.all
+    #end
     @link = Link.find(params[:id])
     @user_who_commented = @current_user
     @comment = Comment.new
