@@ -6,8 +6,9 @@
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
 <br/><br/>
-<h3>Links</h3>
+<h3>Introduction</h3>
 <p>Please add links to <%=link_to "github repository", "https://github.com/m8ker/modular_village"%> forks and other ideas about how to improve source code.</p><p>You don't need to be a rails developer to help. Non-code-related links and comments are also welcome.<br /><br />
+
 <% @project.links.each do |link| %>
   
     <% if link.categories.present? %>
@@ -75,6 +76,7 @@
 	</div>
 	<br>
 <% end %>
+
 <h4>Add a helpful link to move this project forward</h4>
 
 <%= simple_form_for(@link) do |f| %>
